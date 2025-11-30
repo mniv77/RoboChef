@@ -1,597 +1,1797 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOS Platform - Executive Summary | HaGOLEM</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-            line-height: 1.7;
-            color: #2c3e50;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-        
-        .header .subtitle {
-            font-size: 1.3em;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        
-        .badge {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 600;
-            margin-top: 20px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .content {
-            padding: 50px 40px;
-        }
-        
-        .section {
-            margin-bottom: 50px;
-        }
-        
-        .section-title {
-            font-size: 2em;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 4px solid #667eea;
-            font-weight: 700;
-        }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            border-left: 5px solid #667eea;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 10px;
-        }
-        
-        .highlight-box h3 {
-            color: #667eea;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-        
-        .key-point {
-            background: #f8f9fa;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            border-left: 4px solid #27ae60;
-        }
-        
-        .key-point strong {
-            color: #27ae60;
-            font-size: 1.1em;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-        
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: 800;
-            display: block;
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        li {
-            padding: 12px 0 12px 35px;
-            position: relative;
-        }
-        
-        li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        
-        .cta-box {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 50px 0;
-        }
-        
-        .cta-box h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #e74c3c;
-            padding: 15px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1em;
-            margin-top: 20px;
-            transition: transform 0.3s;
-        }
-        
-        .cta-button:hover {
-            transform: scale(1.05);
-        }
-        
-        .quote {
-            font-style: italic;
-            font-size: 1.2em;
-            color: #555;
-            padding: 30px;
-            background: #f8f9fa;
-            border-left: 5px solid #667eea;
-            margin: 30px 0;
-            border-radius: 8px;
-        }
-        
-        .warning-box {
-            background: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 8px;
-        }
-        
-        .warning-box strong {
-            color: #856404;
-            font-size: 1.2em;
-            display: block;
-            margin-bottom: 10px;
-        }
-        
-        .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
-            }
-            .content {
-                padding: 30px 20px;
-            }
-            .section-title {
-                font-size: 1.5em;
-            }
-        }
-    </style>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 25.8.3.2 (Windows)"/>
+	<meta name="created" content="2025-11-29T18:27:06.583285700"/>
+	<meta name="changed" content="2025-11-29T18:29:13.930648100"/>
+	<style type="text/css">
+		@page { size: 8.5in 11in; margin: 0.79in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+	</style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>HOS PLATFORM</h1>
-            <div class="subtitle">Executive Summary</div>
-            <div class="badge">⏰ 12-MONTH WINDOW TO WIN</div>
-        </div>
-        
-        <div class="content">
-            
-            <!-- Key Stats -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">$8M</span>
-                    <span class="stat-label">Raising at $20M Pre</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">28.6%</span>
-                    <span class="stat-label">Equity Stake</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">403%</span>
-                    <span class="stat-label">Proven Returns</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">65-750x</span>
-                    <span class="stat-label">Projected Returns</span>
-                </div>
-            </div>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><p style="margin-bottom: 0in; line-height: 100%">
+<font size="1" style="font-size: 6pt">&lt;!DOCTYPE html&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><font size="1" style="font-size: 6pt">&lt;html
+lang=&quot;en&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><font size="1" style="font-size: 6pt">&lt;head&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">    <font size="1" style="font-size: 6pt">&lt;meta
+charset=&quot;UTF-8&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">    <font size="1" style="font-size: 6pt">&lt;meta
+name=&quot;viewport&quot; content=&quot;width=device-width,
+initial-scale=1.0&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">    <font size="1" style="font-size: 6pt">&lt;title&gt;HOS
+Platform - Executive Summary | HaGOLEM&lt;/title&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">    <font size="1" style="font-size: 6pt">&lt;style&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">*
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">margin:
+0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">box-sizing: border-box;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">body
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-family: -apple-system,
+BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+sans-serif;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">line-height: 1.7;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#2c3e50;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background:
+linear-gradient(135deg, #667eea 0%, #764ba2 100%);</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.container
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">max-width: 900px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">margin:
+0 auto;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background: white;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">box-shadow: 0 20px 60px
+rgba(0,0,0,0.3);</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">overflow: hidden;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.header
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background:
+linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+white;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+60px 40px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">text-align: center;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.header
+h1 {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 2.8em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-bottom: 10px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-weight: 800;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">letter-spacing: -1px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.header
+.subtitle {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 1.3em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">opacity:
+0.9;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-weight: 300;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.badge
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">display:
+inline-block;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background: #e74c3c;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+white;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+8px 20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 0.9em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-weight: 600;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-top: 20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">animation: pulse 2s infinite;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">@keyframes
+pulse {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">0%,
+100% { transform: scale(1); }</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">50%
+{ transform: scale(1.05); }</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.content
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+50px 40px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.section
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-bottom: 50px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">       
+<font size="1" style="font-size: 6pt">.section-title {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 2em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#2c3e50;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-bottom: 25px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">padding-bottom: 15px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-bottom: 4px solid
+#667eea;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-weight: 700;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">       
+<font size="1" style="font-size: 6pt">.highlight-box {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background:
+linear-gradient(135deg, #667eea15 0%, #764ba215 100%);</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-left: 5px solid #667eea;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+30px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">margin:
+30px 0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 10px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">       
+<font size="1" style="font-size: 6pt">.highlight-box h3 {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#667eea;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 1.5em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-bottom: 15px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.key-point
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background: #f8f9fa;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">margin:
+15px 0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 8px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-left: 4px solid #27ae60;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.key-point
+strong {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#27ae60;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 1.1em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.stats-grid
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">display:
+grid;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">grid-template-columns:
+repeat(auto-fit, minmax(200px, 1fr));</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">gap:
+20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">margin:
+30px 0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.stat-card
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background:
+linear-gradient(135deg, #667eea 0%, #764ba2 100%);</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+white;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+30px 20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 15px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">text-align: center;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">box-shadow: 0 10px 30px
+rgba(102, 126, 234, 0.3);</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.stat-number
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 2.5em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-weight: 800;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">display:
+block;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-bottom: 10px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.stat-label
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 0.9em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">opacity:
+0.9;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">ul
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">list-style: none;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">padding-left: 0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">li
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+12px 0 12px 35px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">position: relative;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">li:before
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">content:
+&quot;→&quot;;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">position: absolute;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">left:
+0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#667eea;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-weight: bold;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 1.2em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.cta-box
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background:
+linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+white;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+40px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 15px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">text-align: center;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">margin:
+50px 0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.cta-box
+h2 {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 2em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-bottom: 20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.cta-button
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">display:
+inline-block;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background: white;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#e74c3c;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+15px 40px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 30px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">text-decoration: none;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-weight: 700;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 1.1em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-top: 20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">transition: transform 0.3s;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">       
+<font size="1" style="font-size: 6pt">.cta-button:hover {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">transform: scale(1.05);</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.quote
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-style: italic;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 1.2em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#555;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+30px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background: #f8f9fa;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-left: 5px solid #667eea;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">margin:
+30px 0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 8px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.warning-box
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background: #fff3cd;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-left: 5px solid #ffc107;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+25px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">margin:
+30px 0;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">border-radius: 8px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.warning-box
+strong {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#856404;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-size: 1.2em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">display:
+block;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">margin-bottom: 10px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.footer
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">background: #2c3e50;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+white;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">padding:
+40px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">text-align: center;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.footer
+a {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">color:
+#667eea;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">text-decoration: none;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">font-weight: 600;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">.footer
+a:hover {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">text-decoration: underline;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">@media
+(max-width: 768px) {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">.header
+h1 {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">font-size: 2em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">.content
+{</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">padding: 30px 20px;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">           
+<font size="1" style="font-size: 6pt">.section-title {</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">font-size: 1.5em;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">}</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">    <font size="1" style="font-size: 6pt">&lt;/style&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><font size="1" style="font-size: 6pt">&lt;/head&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><font size="1" style="font-size: 6pt">&lt;body&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">    <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;container&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;header&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;h1&gt;HOS
+PLATFORM&lt;/h1&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;subtitle&quot;&gt;Executive Summary&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;badge&quot;&gt;⏰ 12-MONTH WINDOW TO WIN&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;content&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Key Stats --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;stats-grid&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;stat-card&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-number&quot;&gt;$8M&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-label&quot;&gt;Raising at $20M Pre&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;stat-card&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-number&quot;&gt;28.6%&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-label&quot;&gt;Equity Stake&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;stat-card&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-number&quot;&gt;403%&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-label&quot;&gt;Proven Returns&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;stat-card&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-number&quot;&gt;65-750x&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-label&quot;&gt;Projected Returns&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- Opening Hook -->
-            <div class="highlight-box">
-                <h3>🚀 The Once-in-Lifetime Opportunity</h3>
-                <p><strong>2005:</strong> VCs passed on Android for $50M. "Mobile OS? Google should stick to search."</p>
-                <p><strong>2025:</strong> Android worth $200B+. Those VCs still kick themselves.</p>
-                <p><strong>Right now:</strong> The same moment is happening for humanoid robots. And you have 12 months to decide.</p>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Opening Hook --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;h3&gt;🚀 The
+Once-in-Lifetime Opportunity&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;2005:&lt;/strong&gt;
+VCs passed on Android for $50M. &quot;Mobile OS? Google should stick
+to search.&quot;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;2025:&lt;/strong&gt;
+Android worth $200B+. Those VCs still kick themselves.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;Right
+now:&lt;/strong&gt; The same moment is happening for humanoid robots.
+And you have 12 months to decide.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- Created in Our Image Section -->
-            <div class="section">
-                <h2 class="section-title">💡 "Created in Our Image" - Why Humanoid Form Matters</h2>
-                
-                <p style="font-size: 1.1em; margin-bottom: 20px;">Before we dive into the business opportunity, understand WHY the humanoid form is not cosmetic—it's functional and profound.</p>
-                
-                <div class="key-point">
-                    <strong>Physical Image:</strong> God created humans with two legs (not four), two hands, upright posture. WHY? To use TOOLS. To manipulate the world. To build civilization.
-                </div>
-                
-                <div class="key-point">
-                    <strong>Mental Image:</strong> Brain with neurons, synapses, layers, connections. Not random structure—enables learning, reasoning, creating.
-                </div>
-                
-                <p style="margin-top: 30px; font-size: 1.1em;">Now humans are creating humanoid robots in OUR image—continuing the pattern:</p>
-                
-                <div class="highlight-box">
-                    <h3>Physical Form = Human Form</h3>
-                    <ul>
-                        <li><strong>Two legs</strong> → Can use human infrastructure (stairs, ladders, vehicles, doorways)</li>
-                        <li><strong>Two hands</strong> → Can use every tool humans ever invented (knives, hammers, steering wheels)</li>
-                        <li><strong>Upright posture</strong> → Can reach high and low, see like we see</li>
-                        <li><strong>Human proportions</strong> → Fits in human spaces (cars, kitchens, offices)</li>
-                    </ul>
-                </div>
-                
-                <div class="highlight-box">
-                    <h3>AI Intelligence = Human Brain Structure</h3>
-                    <ul>
-                        <li><strong>Neural networks</strong> → Direct mirror of our biological neurons</li>
-                        <li><strong>Layers and connections</strong> → Same architecture as human brain</li>
-                        <li><strong>Learning by observation</strong> → Like children watching parents</li>
-                        <li><strong>Synaptic weights</strong> → Mirrors how our brain strengthens connections</li>
-                    </ul>
-                </div>
-                
-                <div class="quote">
-                    "This isn't philosophy—it's ENGINEERING NECESSITY. HR can do ANY human task because: (1) Human-form body can use all human tools and infrastructure, (2) Human-brain-structured AI can learn and execute like we do."
-                </div>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Created in Our Image Section --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;💡 &quot;Created in Our Image&quot;
+- Why Humanoid Form Matters&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;font-size: 1.1em; margin-bottom: 20px;&quot;&gt;Before we
+dive into the business opportunity, understand WHY the humanoid form
+is not cosmetic—it's functional and profound.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;Physical
+Image:&lt;/strong&gt; God created humans with two legs (not four),
+two hands, upright posture. WHY? To use TOOLS. To manipulate the
+world. To build civilization.</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;Mental
+Image:&lt;/strong&gt; Brain with neurons, synapses, layers,
+connections. Not random structure—enables learning, reasoning,
+creating.</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;margin-top: 30px; font-size: 1.1em;&quot;&gt;Now humans
+are creating humanoid robots in OUR image—continuing the
+pattern:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;Physical Form = Human
+Form&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Two
+legs&lt;/strong&gt; → Can use human infrastructure (stairs,
+ladders, vehicles, doorways)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Two
+hands&lt;/strong&gt; → Can use every tool humans ever invented
+(knives, hammers, steering wheels)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Upright
+posture&lt;/strong&gt; → Can reach high and low, see like we
+see&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Human
+proportions&lt;/strong&gt; → Fits in human spaces (cars, kitchens,
+offices)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;AI Intelligence =
+Human Brain Structure&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Neural
+networks&lt;/strong&gt; → Direct mirror of our biological
+neurons&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Layers
+and connections&lt;/strong&gt; → Same architecture as human
+brain&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Learning
+by observation&lt;/strong&gt; → Like children watching parents&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Synaptic
+weights&lt;/strong&gt; → Mirrors how our brain strengthens
+connections&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;quote&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&quot;This isn't
+philosophy—it's ENGINEERING NECESSITY. HR can do ANY human task
+because: (1) Human-form body can use all human tools and
+infrastructure, (2) Human-brain-structured AI can learn and execute
+like we do.&quot;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- Why This Moment is Unique -->
-            <div class="section">
-                <h2 class="section-title">⚡ Why This Moment Is Unique</h2>
-                
-                <p>For the past 50 years, humanoid robots were toys and curiosities. Boston Dynamics robots did backflips → impressive, but useless. Honda ASIMO walked stairs → cute, but couldn't do real work.</p>
-                
-                <div class="highlight-box">
-                    <h3>Now, Everything Changed. AI Crossed the Threshold.</h3>
-                    <p><strong>My Proof:</strong> I'm 70+ years old. I built a trading system in 6 months.</p>
-                    <p>I could NEVER have built this system without AI.</p>
-                    <ul>
-                        <li>200+ trades executed</li>
-                        <li>403% returns, 99% win rate</li>
-                        <li>Running live: <a href="http://meirniv.pythonanywhere.com/orders" target="_blank">meirniv.pythonanywhere.com/orders</a></li>
-                    </ul>
-                    <p><strong>This proves AI is NOW superior to humans for execution tasks.</strong></p>
-                    <p>Not "someday." Not "eventually." <strong>RIGHT NOW.</strong></p>
-                </div>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Why This Moment is Unique --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;⚡ Why This Moment Is Unique&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;p&gt;For the past 50 years,
+humanoid robots were toys and curiosities. Boston Dynamics robots did
+backflips → impressive, but useless. Honda ASIMO walked stairs →
+cute, but couldn't do real work.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;Now, Everything
+Changed. AI Crossed the Threshold.&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;My
+Proof:&lt;/strong&gt; I'm older than 70 years old. I built a trading
+system in 6 months.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p&gt;I could NEVER have
+built this system without AI.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;200+ trades
+executed&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;403% returns, 99%
+win rate&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Running live: &lt;a
+href=&quot;http://meirniv.pythonanywhere.com/orders&quot;
+target=&quot;_blank&quot;&gt;meirniv.pythonanywhere.com/orders&lt;/a&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;This
+proves AI is NOW superior to humans for execution tasks.&lt;/strong&gt;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p&gt;Not &quot;someday.&quot;
+Not &quot;eventually.&quot; &lt;strong&gt;RIGHT NOW.&lt;/strong&gt;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- The Transition -->
-            <div class="section">
-                <h2 class="section-title">🔄 The Transition: From Toy to Reality</h2>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
-                    <div style="background: #ffebee; padding: 25px; border-radius: 10px;">
-                        <h3 style="color: #c62828; margin-bottom: 15px;">❌ Before (Past 50 years)</h3>
-                        <ul style="list-style-type: disc; padding-left: 20px;">
-                            <li>Dumb machines following pre-programmed instructions</li>
-                            <li>Couldn't adapt to variations</li>
-                            <li>Couldn't learn from examples</li>
-                            <li>Couldn't understand natural language</li>
-                            <li>Toys and curiosities</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: #e8f5e9; padding: 25px; border-radius: 10px;">
-                        <h3 style="color: #2e7d32; margin-bottom: 15px;">✅ Now (2024-2025)</h3>
-                        <ul style="list-style-type: disc; padding-left: 20px;">
-                            <li>AI = superior intelligence for execution tasks</li>
-                            <li>Adapts to variations instantly</li>
-                            <li>Learns from demonstrations (pedagogy)</li>
-                            <li>Understands natural language commands</li>
-                            <li>Real utility, real value</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="warning-box">
-                    <strong>⚠️ CRITICAL TIMING</strong>
-                    The humanoid body existed for years (Boston Dynamics proved it). What was missing: The brain. AI is now the brain. This combination—humanoid body + AI brain—happens ONCE. It's happening RIGHT NOW. If you miss this 12-month window, it won't come back.
-                </div>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+The Transition --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;🔄 The Transition: From Toy to
+Reality&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+style=&quot;display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
+margin: 30px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div style=&quot;background:
+#ffebee; padding: 25px; border-radius: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;h3 style=&quot;color:
+#c62828; margin-bottom: 15px;&quot;&gt;❌ Before (Past 50
+years)&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;ul
+style=&quot;list-style-type: disc; padding-left: 20px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Dumb machines
+following pre-programmed instructions&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Couldn't adapt
+to variations&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Couldn't learn
+from examples&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Couldn't
+understand natural language&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Toys and
+curiosities&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div style=&quot;background:
+#e8f5e9; padding: 25px; border-radius: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;h3 style=&quot;color:
+#2e7d32; margin-bottom: 15px;&quot;&gt;✅ Now (2024-2025)&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;ul
+style=&quot;list-style-type: disc; padding-left: 20px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;AI = superior
+intelligence for execution tasks&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Adapts to
+variations instantly&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Learns from
+demonstrations (pedagogy)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Understands
+natural language commands&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Real utility,
+real value&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;warning-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;⚠️ CRITICAL
+TIMING&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">The humanoid body existed for
+years (Boston Dynamics proved it). What was missing: The brain. AI is
+now the brain. This combination—humanoid body + AI brain—happens
+ONCE. It's happening RIGHT NOW. If you miss this 12-month window, it
+won't come back.</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- Why AI is Superior -->
-            <div class="section">
-                <h2 class="section-title">🎯 Why AI Is Superior for Execution (Not Imagination)</h2>
-                
-                <div class="key-point">
-                    <strong>Humans have ONE advantage: Imagination</strong><br>
-                    Creating art, writing poetry, inventing new concepts, dreaming up breakthrough ideas. This is what humans are for.
-                </div>
-                
-                <p style="margin: 30px 0; font-size: 1.1em;">But most tasks don't need imagination:</p>
-                
-                <div style="display: grid; gap: 20px; margin: 30px 0;">
-                    <div class="key-point">
-                        <strong>Driving a Car:</strong> Not imagination—just execution. HR does this BETTER: Never distracted, never tired, never emotional, perfect reaction time, 360° awareness. Result: Almost ZERO accidents (100x safer than humans).
-                    </div>
-                    
-                    <div class="key-point">
-                        <strong>Rescuing Wounded Soldier:</strong> Not imagination—just protocol. HR does this BETTER: No fear, no self-preservation instinct, will enter kill zone to save soldier, no hesitation, no trauma. The brutal truth: When bullets are flying, human medic thinks "I might die." HR thinks nothing. Just executes rescue protocol.
-                    </div>
-                    
-                    <div class="key-point">
-                        <strong>Cooking a Meal:</strong> Not imagination (once recipe is created)—just execution. AI does this BETTER: Perfect consistency, no mistakes, exact measurements every time.
-                    </div>
-                </div>
-                
-                <div class="highlight-box">
-                    <h3>The Pattern</h3>
-                    <p><strong>For 90% of physical labor, imagination isn't needed. Just execution.</strong></p>
-                    <p>And AI executes better than humans.</p>
-                    <p><strong>This is why humanoids will replace 30% of physical labor in 10 years.</strong></p>
-                </div>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Why AI is Superior --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;🎯 Why AI Is Superior for
+Execution (Not Imagination)&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;Humans have ONE
+advantage: Imagination&lt;/strong&gt;&lt;br&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">Creating art, writing poetry,
+inventing new concepts, dreaming up breakthrough ideas. This is what
+humans are for.</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;margin: 30px 0; font-size: 1.1em;&quot;&gt;But most tasks
+don't need imagination:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+style=&quot;display: grid; gap: 20px; margin: 30px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;strong&gt;Driving a
+Car:&lt;/strong&gt; Not imagination—just execution. HR does this
+BETTER: Never distracted, never tired, never emotional, perfect
+reaction time, 360° awareness. Result: Almost ZERO accidents (100x
+safer than humans).</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;strong&gt;Rescuing
+Wounded Soldier:&lt;/strong&gt; Not imagination—just protocol. HR
+does this BETTER: No fear, no self-preservation instinct, will enter
+kill zone to save soldier, no hesitation, no trauma. The brutal
+truth: When bullets are flying, human medic thinks &quot;I might
+die.&quot; HR thinks nothing. Just executes rescue protocol.</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;strong&gt;Cooking a
+Meal:&lt;/strong&gt; Not imagination (once recipe is created)—just
+execution. AI does this BETTER: Perfect consistency, no mistakes,
+exact measurements every time.</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;The Pattern&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;For 90%
+of physical labor, imagination isn't needed. Just
+execution.&lt;/strong&gt;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p&gt;And AI executes better
+than humans.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;This is
+why humanoids will replace 30% of physical labor in 10
+years.&lt;/strong&gt;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- My Personal Proof -->
-            <div class="section">
-                <h2 class="section-title">📊 My Personal Proof: The Trading System</h2>
-                
-                <p style="font-size: 1.1em; margin-bottom: 20px;">I had the concept for automated trading, but I couldn't build it myself. Too complex. Too much code.</p>
-                
-                <p style="font-size: 1.1em; margin-bottom: 30px;">Then I used AI-assisted development:</p>
-                
-                <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin: 20px 0;">
-                    <ol style="list-style-type: decimal; padding-left: 20px;">
-                        <li style="margin: 15px 0;"><strong>I described what I wanted</strong></li>
-                        <li style="margin: 15px 0;"><strong>AI wrote the code</strong></li>
-                        <li style="margin: 15px 0;"><strong>I tested and refined</strong></li>
-                        <li style="margin: 15px 0;"><strong>AI improved it</strong></li>
-                    </ol>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number">6 mo</span>
-                        <span class="stat-label">Build Time</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">403%</span>
-                        <span class="stat-label">Returns</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">99%</span>
-                        <span class="stat-label">Win Rate</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">Live</span>
-                        <span class="stat-label">Right Now</span>
-                    </div>
-                </div>
-                
-                <div class="highlight-box">
-                    <h3>This Proves:</h3>
-                    <ul>
-                        <li>✅ AI-assisted development is 10x faster</li>
-                        <li>✅ AI can execute better than I envisioned</li>
-                        <li>✅ Same methodology builds HOS platform in 12 months</li>
-                        <li>✅ I can ship production systems using AI</li>
-                    </ul>
-                    <p style="margin-top: 20px; font-size: 1.2em; font-weight: 600;">If AI can beat the stock market, it can drive a car and cook a meal.</p>
-                </div>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+My Personal Proof --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;📊 My Personal Proof: The
+Trading System&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;font-size: 1.1em; margin-bottom: 20px;&quot;&gt;I had the
+concept for automated trading, but I couldn't build it myself. Too
+complex. Too much code.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;font-size: 1.1em; margin-bottom: 30px;&quot;&gt;Then I
+used AI-assisted development:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+style=&quot;background: #f8f9fa; padding: 30px; border-radius: 10px;
+margin: 20px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ol style=&quot;list-style-type:
+decimal; padding-left: 20px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li style=&quot;margin:
+15px 0;&quot;&gt;&lt;strong&gt;I described what I
+wanted&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li style=&quot;margin:
+15px 0;&quot;&gt;&lt;strong&gt;AI wrote the code&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li style=&quot;margin:
+15px 0;&quot;&gt;&lt;strong&gt;I tested and refined&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li style=&quot;margin:
+15px 0;&quot;&gt;&lt;strong&gt;AI improved it&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ol&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;stats-grid&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;stat-card&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-number&quot;&gt;6 mo&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-label&quot;&gt;Build Time&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;stat-card&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-number&quot;&gt;403%&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-label&quot;&gt;Returns&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;stat-card&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-number&quot;&gt;99%&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-label&quot;&gt;Win Rate&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;stat-card&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-number&quot;&gt;Live&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;span
+class=&quot;stat-label&quot;&gt;Right Now&lt;/span&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;This Proves:&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;✅ AI-assisted
+development is 10x faster&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;✅ AI can execute
+better than I envisioned&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;✅ Same
+methodology builds HOS platform in 12 months&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;✅ I can ship
+production systems using AI&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+20px; font-size: 1.2em; font-weight: 600;&quot;&gt;If AI can beat the
+stock market, it can drive a car and cook a meal.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- The Meta-Proof -->
-            <div class="section">
-                <h2 class="section-title">🎭 The Meta-Proof: This Document Itself</h2>
-                
-                <div class="quote">
-                    This executive summary you're reading is PROOF of the thesis.
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
-                    <div class="key-point">
-                        <strong>I (Human, 70 years old):</strong>
-                        <ul>
-                            <li>Had the concept</li>
-                            <li>Provided the vision</li>
-                            <li>Knew the strategy</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="key-point">
-                        <strong>AI:</strong>
-                        <ul>
-                            <li>Organized the thoughts</li>
-                            <li>Polished the language</li>
-                            <li>Created the structure</li>
-                            <li>Made it convincing</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="warning-box">
-                    <strong>The Pattern Is Clear:</strong>
-                    Human provides imagination and vision → AI executes perfectly → Result: Better than human alone.
-                    <p style="margin-top: 15px;">Anybody not using AI in the future will be doomed. Why? Because their competitors ARE using AI and executing 10x better.</p>
-                </div>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+The Meta-Proof --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;🎭 The Meta-Proof: This Document
+Itself&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;quote&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">This executive summary you're
+reading is PROOF of the thesis.</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+style=&quot;display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+margin: 30px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;strong&gt;I (Human,
+older than 70 years old):&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Had the
+concept&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Provided the
+vision&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Knew the
+strategy&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;strong&gt;AI:&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Organized the
+thoughts&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Polished the
+language&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Created the
+structure&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Made it
+convincing&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;warning-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;The Pattern Is
+Clear:&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">Human provides imagination and
+vision → AI executes perfectly → Result: Better than human alone.</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+15px;&quot;&gt;Anybody not using AI in the future will be doomed.
+Why? Because their competitors ARE using AI and executing 10x
+better.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- Humanoid Standard Performance -->
-            <div class="section">
-                <h2 class="section-title">📈 Humanoid Standard Performance Will Be Superior</h2>
-                
-                <p style="font-size: 1.1em; margin-bottom: 30px;">Not in some tasks. In MOST tasks.</p>
-                
-                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                    <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                        <tr>
-                            <th style="padding: 15px; text-align: left;">Task</th>
-                            <th style="padding: 15px; text-align: left;">Human Performance</th>
-                            <th style="padding: 15px; text-align: left;">HR Performance</th>
-                            <th style="padding: 15px; text-align: center;">Winner</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;"><strong>Driving</strong></td>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;">1.5 deaths/100M miles, distracted, tired</td>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;"><0.01 deaths/100M miles, perfect attention</td>
-                            <td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;"><span style="background: #27ae60; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600;">HR (100x safer)</span></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;"><strong>Combat Rescue</strong></td>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;">Fears death, hesitates under fire</td>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;">No fear, runs into kill zone</td>
-                            <td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;"><span style="background: #27ae60; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600;">HR (saves more lives)</span></td>
-                        </tr>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;"><strong>Manufacturing</strong></td>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;">8 hours/day, needs breaks, errors</td>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;">24 hours/day, no breaks, zero errors</td>
-                            <td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;"><span style="background: #27ae60; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600;">HR (3x output)</span></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;"><strong>Elderly Care</strong></td>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;">Gets tired, limited patience</td>
-                            <td style="padding: 15px; border-bottom: 1px solid #ddd;">Never tired, infinite patience</td>
-                            <td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;"><span style="background: #27ae60; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600;">HR (better care)</span></td>
-                        </tr>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 15px;"><strong>Security Guard</strong></td>
-                            <td style="padding: 15px;">Gets bored, might sleep</td>
-                            <td style="padding: 15px;">Never bored, always vigilant</td>
-                            <td style="padding: 15px; text-align: center;"><span style="background: #27ae60; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600;">HR (zero breaches)</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="highlight-box" style="margin-top: 30px;">
-                    <h3>The New Reality</h3>
-                    <p style="font-size: 1.2em;">For physical execution tasks (90% of physical labor):</p>
-                    <p style="font-size: 1.3em; font-weight: 600; margin-top: 15px;">Human + AI = Superior<br>Human alone = Obsolete</p>
-                    <p style="margin-top: 20px;">The only question: <strong>Who provides the AI platform?</strong></p>
-                    <p style="font-size: 1.2em; margin-top: 10px;">Us, Elon, or China.</p>
-                </div>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Humanoid Standard Performance --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;📈 Humanoid Standard Performance
+Will Be Superior&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;font-size: 1.1em; margin-bottom: 30px;&quot;&gt;Not in
+some tasks. In MOST tasks.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;table style=&quot;width:
+100%; border-collapse: collapse; margin: 20px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;thead style=&quot;background:
+linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;th style=&quot;padding:
+15px; text-align: left;&quot;&gt;Task&lt;/th&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;th style=&quot;padding:
+15px; text-align: left;&quot;&gt;Human Performance&lt;/th&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;th style=&quot;padding:
+15px; text-align: left;&quot;&gt;HR Performance&lt;/th&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;th style=&quot;padding:
+15px; text-align: center;&quot;&gt;Winner&lt;/th&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/thead&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;tbody&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;tr style=&quot;background:
+#f8f9fa;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;&lt;strong&gt;Driving&lt;/strong&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;1.5 deaths/100M miles,
+distracted, tired&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;&lt;0.01 deaths/100M
+miles, perfect attention&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; text-align: center; border-bottom: 1px solid #ddd;&quot;&gt;&lt;span
+style=&quot;background: #27ae60; color: white; padding: 5px 15px;
+border-radius: 15px; font-weight: 600;&quot;&gt;HR (100x
+safer)&lt;/span&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;&lt;strong&gt;Combat
+Rescue&lt;/strong&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;Fears death, hesitates
+under fire&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;No fear, runs into kill
+zone&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; text-align: center; border-bottom: 1px solid #ddd;&quot;&gt;&lt;span
+style=&quot;background: #27ae60; color: white; padding: 5px 15px;
+border-radius: 15px; font-weight: 600;&quot;&gt;HR (saves more
+lives)&lt;/span&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;tr style=&quot;background:
+#f8f9fa;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid
+#ddd;&quot;&gt;&lt;strong&gt;Manufacturing&lt;/strong&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;8 hours/day, needs
+breaks, errors&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;24 hours/day, no
+breaks, zero errors&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; text-align: center; border-bottom: 1px solid #ddd;&quot;&gt;&lt;span
+style=&quot;background: #27ae60; color: white; padding: 5px 15px;
+border-radius: 15px; font-weight: 600;&quot;&gt;HR (3x
+output)&lt;/span&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;&lt;strong&gt;Elderly
+Care&lt;/strong&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;Gets tired, limited
+patience&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; border-bottom: 1px solid #ddd;&quot;&gt;Never tired, infinite
+patience&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; text-align: center; border-bottom: 1px solid #ddd;&quot;&gt;&lt;span
+style=&quot;background: #27ae60; color: white; padding: 5px 15px;
+border-radius: 15px; font-weight: 600;&quot;&gt;HR (better
+care)&lt;/span&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;tr style=&quot;background:
+#f8f9fa;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px;&quot;&gt;&lt;strong&gt;Security Guard&lt;/strong&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px;&quot;&gt;Gets bored, might sleep&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px;&quot;&gt;Never bored, always vigilant&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;td style=&quot;padding:
+15px; text-align: center;&quot;&gt;&lt;span style=&quot;background:
+#27ae60; color: white; padding: 5px 15px; border-radius: 15px;
+font-weight: 600;&quot;&gt;HR (zero breaches)&lt;/span&gt;&lt;/td&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/tr&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/tbody&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/table&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot; style=&quot;margin-top: 30px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;The New Reality&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;font-size:
+1.2em;&quot;&gt;For physical execution tasks (90% of physical
+labor):&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;font-size:
+1.3em; font-weight: 600; margin-top: 15px;&quot;&gt;Human + AI =
+Superior&lt;br&gt;Human alone = Obsolete&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+20px;&quot;&gt;The only question: &lt;strong&gt;Who provides the AI
+platform?&lt;/strong&gt;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;font-size:
+1.2em; margin-top: 10px;&quot;&gt;Us, Elon, or China.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- Call to Action -->
-            <div class="cta-box">
-                <h2>📧 Ready to Learn More?</h2>
-                <p style="font-size: 1.2em; margin: 20px 0;">Continue reading the complete executive summary for:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 20px auto;">
-                    <li>Plan A: Rapid Execution to Market Dominance</li>
-                    <li>The Michelin Chef Marketplace</li>
-                    <li>Spin-Off Portfolio Strategy</li>
-                    <li>Financial Projections & Returns</li>
-                    <li>The NVIDIA Strategic Opportunity</li>
-                    <li>Founder Protection Terms</li>
-                </ul>
-                <p style="margin-top: 30px; font-size: 1.3em; font-weight: 600;">This is the "Android moment" for robotics.</p>
-                <p style="font-size: 1.1em; margin-top: 10px;">The platform winner will be decided in the next 12 months.</p>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Team Structure --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;👥 Team Structure
+(Post-Funding)&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;comparison-grid&quot; style=&quot;margin: 30px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;strong&gt;🇺🇸 US
+Team (San Francisco):&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;ul style=&quot;padding-left:
+20px; margin-top: 15px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;CEO&lt;/strong&gt;
+- Operations, fundraising, partnerships (NOT me - need strong
+operator)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;VP
+Engineering&lt;/strong&gt; - Platform development&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;VP
+Business Development&lt;/strong&gt; - Sales, military
+relationships&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;8-10
+Engineers&lt;/strong&gt; - AI, robotics, software&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;2-3
+Business development, marketing&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Legal,
+admin support&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div class=&quot;key-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;strong&gt;🇮🇱
+Israel Team (Tel Aviv):&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;ul style=&quot;padding-left:
+20px; margin-top: 15px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;CTO&lt;/strong&gt;
+- Technical vision, advanced R&amp;D&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Chief
+Scientist&lt;/strong&gt; - Quantum, breakthrough research&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Military
+Liaison&lt;/strong&gt; - IDF, US Army coordination&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;5-6
+Research Engineers&lt;/strong&gt; - Quantum, AI, robotics&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Government
+relations&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;Founder (Me -
+Meir):&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Chairman/Visionary&lt;/strong&gt;
+- Strategy, breakthrough ideas&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Based in US (can
+travel to Israel)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;NOT
+day-to-day operations&lt;/strong&gt; (hearing difficulty, age older
+than 70)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Focus: Vision,
+partnerships, strategic decisions&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-            <!-- Contact -->
-            <div class="section" style="text-align: center; padding: 40px 0;">
-                <h2 class="section-title" style="text-align: center; border: none;">📞 Let's Talk</h2>
-                <p style="font-size: 1.2em; margin-bottom: 30px;">
-                    <strong>Meir Niv</strong><br>
-                    Founder & Chairman, HaGOLEM<br>
-                    45 Years Engineering Experience
-                </p>
-                <div style="margin: 20px 0;">
-                    <a href="https://www.mayyamw.com/hagolem" style="color: #667eea; text-decoration: none; font-weight: 600; font-size: 1.1em;">🌐 mayyamw.com/hagolem</a>
-                </div>
-                <div style="margin: 20px 0;">
-                    <a href="http://meirniv.pythonanywhere.com/orders" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600; font-size: 1.1em;">📊 Live Trading Proof: meirniv.pythonanywhere.com/orders</a>
-                </div>
-            </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Founder Protection --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot;&gt;🛡️ Founder Protection
+(Critical)&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;warning-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;⚠️ This is
+non-negotiable and protects both the vision AND your
+investment.&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;story-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;Cannot Be
+Fired:&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+15px; font-size: 1.1em;&quot;&gt;Lessons from history:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul style=&quot;padding-left:
+20px; margin-top: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Steve
+Jobs&lt;/strong&gt; - Fired from Apple 1985, nearly destroyed
+company. Took 12 years to recover.&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Sam
+Altman&lt;/strong&gt; - Fired from OpenAI 2023, chaos ensued, board
+had to reverse decision in 5 days.&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Pattern:&lt;/strong&gt;
+Firing visionary founders breaks companies.&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+20px; font-size: 1.1em;&quot;&gt;&lt;strong&gt;Why this matters for
+HaGOLEM:&lt;/strong&gt;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul style=&quot;padding-left:
+20px; margin-top: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;&quot;Too old for
+company politics trauma&quot; - I'm older than 70, need stability to
+execute vision&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Vision protection
+requires founder stability&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Cannot have board
+drama derailing execution during critical 12-month window&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Company politics
+kills startups faster than bad products&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;story-point&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;Authority to Fire
+Anyone (Including CEO):&lt;/strong&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+15px;&quot;&gt;I retain authority to fire anyone if:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul style=&quot;padding-left:
+20px; margin-top: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Not aligned with
+vision&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Incompetent
+execution&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Unethical behavior
+(antisemitism, discrimination, fraud, etc.)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Causing company
+politics that distract from mission&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Accountability
+flows both ways (CEO accountable to founder's vision)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;Why This Structure
+Works&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-bottom:
+20px; font-size: 1.1em;&quot;&gt;Standard for visionary founders who
+built the most valuable companies:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div style=&quot;display:
+grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px
+0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;div style=&quot;background:
+white; padding: 20px; border-radius: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;Mark
+Zuckerberg:&lt;/strong&gt; Controlling shares, can't be fired →
+Built $1T company (Meta)&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;div style=&quot;background:
+white; padding: 20px; border-radius: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;Elon
+Musk:&lt;/strong&gt; CEO + major shareholder, fires executives
+regularly → Built multiple $100B+ companies&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;div style=&quot;background:
+white; padding: 20px; border-radius: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;Jeff
+Bezos:&lt;/strong&gt; Was untouchable at Amazon → Built $1.5T
+company&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;div style=&quot;background:
+white; padding: 20px; border-radius: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;p&gt;&lt;strong&gt;Larry
+Page/Sergey Brin:&lt;/strong&gt; Google founders, controlled board →
+Built $1.5T company&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+30px; font-size: 1.2em; font-weight: 600; text-align: center; color:
+#667eea;&quot;&gt;The Pattern:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul style=&quot;margin-top:
+15px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Visionary founder
+with protected position&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Strong
+CEO/executives for operations&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Founder focuses on
+vision and breakthroughs&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;This structure
+created the most valuable companies in history&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;comparison-grid&quot; style=&quot;margin-top: 30px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div style=&quot;background:
+#ffebee; padding: 25px; border-radius: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;h3 style=&quot;color:
+#c62828; margin-bottom: 15px;&quot;&gt;❌ When VCs Control:&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;ul
+style=&quot;list-style-type: disc; padding-left: 20px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Short-term
+thinking (next quarter, next fundraise)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Safe decisions
+(avoid risk, follow competitors)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Pressure for
+quick exits (sell too early)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Result:
+Mediocre companies, missed opportunities&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;div style=&quot;background:
+#e8f5e9; padding: 25px; border-radius: 10px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;h3 style=&quot;color:
+#2e7d32; margin-bottom: 15px;&quot;&gt;✅ When Visionary Founder
+Protected:&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;ul
+style=&quot;list-style-type: disc; padding-left: 20px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Long-term
+thinking (build for decades)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Bold decisions
+(create new markets)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;Hold through
+challenges (don't sell cheap)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+       <font size="1" style="font-size: 6pt">&lt;li&gt;&lt;strong&gt;Result:
+Transformational companies, massive returns&lt;/strong&gt;&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;highlight-box&quot; style=&quot;margin-top: 30px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;h3&gt;For Investors:&lt;/h3&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;font-size:
+1.2em;&quot;&gt;This protects YOUR investment by:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;ul style=&quot;margin-top:
+15px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Ensuring vision
+integrity (no dilution of breakthrough strategy)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Long-term value
+creation (not pressured to sell cheap)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Avoiding
+founder-board conflicts (which destroy companies)&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                    
+   <font size="1" style="font-size: 6pt">&lt;li&gt;Maintaining focus
+during critical execution window&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+25px; font-size: 1.3em; font-weight: 600; text-align: center; color:
+#667eea;&quot;&gt;The companies that returned 1000x to investors? All
+had founder protection.&lt;br&gt;The companies that failed or sold
+too early? VCs controlled them.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;p style=&quot;margin-top:
+20px; text-align: center; font-size: 1.2em; font-weight: 600;&quot;&gt;Choose
+wisely.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
 
-        </div>
-        
-        <div class="footer">
-            <p style="margin-bottom: 15px; font-size: 1.1em;"><strong>The Einstein Confidence</strong></p>
-            <p style="font-style: italic; max-width: 700px; margin: 20px auto; line-height: 1.8;">"In 1919, someone asked Einstein: 'What if the experiment shows you're wrong?' Einstein replied: 'Then I would feel sorry for the dear Lord. The theory is correct.'"</p>
-            <p style="margin-top: 30px; font-size: 1.1em;">I have that same confidence about this opportunity.</p>
-            <p style="margin-top: 15px;">Not arrogance. Pattern recognition.</p>
-            <p style="margin-top: 30px; font-size: 0.9em; opacity: 0.7;">© 2025 HaGOLEM. All rights reserved.</p>
-        </div>
-    </div>
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Call to Action --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;cta-box&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;h2&gt;📧 Ready to Learn
+More?&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;font-size: 1.2em; margin: 20px 0;&quot;&gt;Continue
+reading the complete executive summary for:&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;ul
+style=&quot;text-align: left; max-width: 600px; margin: 20px auto;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;li&gt;Plan A: Rapid
+Execution to Market Dominance&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;li&gt;The Michelin Chef
+Marketplace&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;li&gt;Spin-Off Portfolio
+Strategy&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;li&gt;Financial Projections
+&amp; Returns&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;li&gt;The NVIDIA Strategic
+Opportunity&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;li&gt;Founder Protection
+Terms&lt;/li&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/ul&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;margin-top: 30px; font-size: 1.3em; font-weight:
+600;&quot;&gt;This is the &quot;Android moment&quot; for
+robotics.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;font-size: 1.1em; margin-top: 10px;&quot;&gt;The platform
+winner will be decided in the next 12 months.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;!--
+Contact --&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;section&quot; style=&quot;text-align: center; padding:
+40px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;h2
+class=&quot;section-title&quot; style=&quot;text-align: center;
+border: none;&quot;&gt;📞 Let's Talk&lt;/h2&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;font-size: 1.2em; margin-bottom: 30px;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;strong&gt;Meir
+Niv&lt;/strong&gt;&lt;br&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">Founder &amp; Chairman,
+HaGOLEM&lt;br&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">45 Years Engineering Experience</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+style=&quot;margin: 20px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;a
+href=&quot;https://www.mayyamw.com/hagolem&quot; style=&quot;color:
+#667eea; text-decoration: none; font-weight: 600; font-size:
+1.1em;&quot;&gt;🌐 mayyamw.com/hagolem&lt;/a&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                <font size="1" style="font-size: 6pt">&lt;div
+style=&quot;margin: 20px 0;&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">                   
+<font size="1" style="font-size: 6pt">&lt;a
+href=&quot;http://meirniv.pythonanywhere.com/orders&quot;
+target=&quot;_blank&quot; style=&quot;color: #667eea;
+text-decoration: none; font-weight: 600; font-size: 1.1em;&quot;&gt;📊
+Live Trading Proof: meirniv.pythonanywhere.com/orders&lt;/a&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">               
+<font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        
+</p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">&lt;div
+class=&quot;footer&quot;&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;margin-bottom: 15px; font-size: 1.1em;&quot;&gt;&lt;strong&gt;The
+Einstein Confidence&lt;/strong&gt;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;font-style: italic; max-width: 700px; margin: 20px auto;
+line-height: 1.8;&quot;&gt;&quot;In 1919, someone asked Einstein:
+'What if the experiment shows you're wrong?' Einstein replied: 'Then
+I would feel sorry for the dear Lord. The theory is correct.'&quot;&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;margin-top: 30px; font-size: 1.1em;&quot;&gt;I have that
+same confidence about this opportunity.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;margin-top: 15px;&quot;&gt;Not arrogance. Pattern
+recognition.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">            <font size="1" style="font-size: 6pt">&lt;p
+style=&quot;margin-top: 30px; font-size: 0.9em; opacity: 0.7;&quot;&gt;©
+2025 HaGOLEM. All rights reserved.&lt;/p&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">        <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%">    <font size="1" style="font-size: 6pt">&lt;/div&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><font size="1" style="font-size: 6pt">&lt;/body&gt;</font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><font size="1" style="font-size: 6pt">&lt;/html&gt;</font></p>
 </body>
 </html>
