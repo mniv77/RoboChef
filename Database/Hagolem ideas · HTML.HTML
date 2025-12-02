@@ -1,0 +1,380 @@
+<!-- HaGOLEM Ideas Dashboard -->
+<!-- Save as: templates/hagolem_ideas.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HaGOLEM Ideas Database</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-6 mb-6">
+            <h1 class="text-4xl font-bold mb-2">🤖 HaGOLEM Ideas Database</h1>
+            <p class="text-gray-300">The Humanoid Operating System - All Ideas & Materials</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-gray-800 rounded-lg p-4">
+                <div class="text-3xl font-bold text-blue-400" id="stat-total">0</div>
+                <div class="text-sm text-gray-400">Total Ideas</div>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4">
+                <div class="text-3xl font-bold text-green-400" id="stat-new">0</div>
+                <div class="text-sm text-gray-400">New</div>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4">
+                <div class="text-3xl font-bold text-yellow-400" id="stat-progress">0</div>
+                <div class="text-sm text-gray-400">In Progress</div>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4">
+                <div class="text-3xl font-bold text-purple-400" id="stat-recent">0</div>
+                <div class="text-sm text-gray-400">Last 7 Days</div>
+            </div>
+        </div>
+
+        <!-- Search & Filters -->
+        <div class="bg-gray-800 rounded-lg p-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <input type="text" id="search-box" placeholder="Search ideas..." 
+                       class="bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                
+                <select id="filter-type" class="bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                    <option value="">All Types</option>
+                    <option value="Business Strategy">Business Strategy</option>
+                    <option value="Patent">Patent</option>
+                    <option value="Technical">Technical</option>
+                    <option value="VC Pitch">VC Pitch</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Product">Product</option>
+                </select>
+
+                <select id="filter-category" class="bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                    <option value="">All Categories</option>
+                    <option value="Platform">Platform</option>
+                    <option value="RoboChef">RoboChef</option>
+                    <option value="Military">Military</option>
+                    <option value="Fundraising">Fundraising</option>
+                    <option value="AI Institute">AI Institute</option>
+                </select>
+
+                <select id="filter-status" class="bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                    <option value="">All Status</option>
+                    <option value="New">New</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Implemented">Implemented</option>
+                    <option value="On Hold">On Hold</option>
+                </select>
+            </div>
+            <button onclick="searchIdeas()" 
+                    class="mt-4 bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-semibold">
+                🔍 Search
+            </button>
+            <button onclick="clearFilters()" 
+                    class="mt-4 ml-2 bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded font-semibold">
+                Clear
+            </button>
+        </div>
+
+        <!-- Add New Idea Button -->
+        <div class="mb-6">
+            <button onclick="showAddForm()" 
+                    class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold text-lg">
+                ➕ Add New Idea
+            </button>
+        </div>
+
+        <!-- Add/Edit Form (Hidden by default) -->
+        <div id="idea-form" class="hidden bg-gray-800 rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-4" id="form-title">Add New Idea</h2>
+            <form id="new-idea-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm mb-2">Title *</label>
+                        <input type="text" id="idea-title" required
+                               class="w-full bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2">Type *</label>
+                        <select id="idea-type" required
+                                class="w-full bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                            <option value="Business Strategy">Business Strategy</option>
+                            <option value="Patent">Patent</option>
+                            <option value="Technical">Technical</option>
+                            <option value="VC Pitch">VC Pitch</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Product">Product</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2">Category</label>
+                        <select id="idea-category"
+                                class="w-full bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                            <option value="Platform">Platform</option>
+                            <option value="RoboChef">RoboChef</option>
+                            <option value="Military">Military</option>
+                            <option value="Fundraising">Fundraising</option>
+                            <option value="AI Institute">AI Institute</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2">Priority</label>
+                        <select id="idea-priority"
+                                class="w-full bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                            <option value="Critical">Critical</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm mb-2">Content *</label>
+                    <textarea id="idea-content" required rows="8"
+                              class="w-full bg-gray-700 text-white px-4 py-2 rounded border border-gray-600"></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm mb-2">Tags (comma-separated)</label>
+                    <input type="text" id="idea-tags"
+                           placeholder="e.g., platform, robotics, AI"
+                           class="w-full bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm mb-2">Source File</label>
+                    <input type="text" id="idea-source"
+                           placeholder="e.g., HaGOLEM_Pitch_v3.pptx"
+                           class="w-full bg-gray-700 text-white px-4 py-2 rounded border border-gray-600">
+                </div>
+
+                <div class="flex gap-2">
+                    <button type="submit" 
+                            class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded font-semibold">
+                        💾 Save Idea
+                    </button>
+                    <button type="button" onclick="hideAddForm()"
+                            class="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded font-semibold">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Ideas List -->
+        <div id="ideas-list" class="space-y-4">
+            <!-- Ideas will be loaded here -->
+        </div>
+
+        <!-- Back to Dashboard -->
+        <div class="mt-8 text-center">
+            <a href="/" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold inline-block">
+                ← Back to Trading Dashboard
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let currentEditId = null;
+
+        // Load ideas on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+            loadIdeas();
+        });
+
+        // Load statistics
+        function loadStats() {
+            fetch('/api/hagolem/stats')
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('stat-total').textContent = data.total || 0;
+                    document.getElementById('stat-recent').textContent = data.recent || 0;
+                    
+                    // Count by status
+                    const statusCounts = {};
+                    (data.by_status || []).forEach(item => {
+                        statusCounts[item.status] = item.count;
+                    });
+                    document.getElementById('stat-new').textContent = statusCounts['New'] || 0;
+                    document.getElementById('stat-progress').textContent = statusCounts['In Progress'] || 0;
+                });
+        }
+
+        // Load ideas
+        function loadIdeas(params = {}) {
+            const queryString = new URLSearchParams(params).toString();
+            fetch(`/api/hagolem/ideas?${queryString}`)
+                .then(r => r.json())
+                .then(ideas => displayIdeas(ideas));
+        }
+
+        // Display ideas
+        function displayIdeas(ideas) {
+            const container = document.getElementById('ideas-list');
+            
+            if (ideas.length === 0) {
+                container.innerHTML = '<div class="text-center text-gray-400 py-8">No ideas found. Add your first idea!</div>';
+                return;
+            }
+
+            container.innerHTML = ideas.map(idea => `
+                <div class="bg-gray-800 rounded-lg p-4 border-l-4 ${getPriorityColor(idea.priority)}">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold">${escapeHtml(idea.idea_title)}</h3>
+                        <div class="flex gap-2">
+                            <button onclick="editIdea(${idea.id})" class="text-blue-400 hover:text-blue-300">✏️</button>
+                            <button onclick="deleteIdea(${idea.id})" class="text-red-400 hover:text-red-300">🗑️</button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2 mb-3 text-sm">
+                        <span class="bg-blue-900 px-2 py-1 rounded">${escapeHtml(idea.idea_type)}</span>
+                        <span class="bg-purple-900 px-2 py-1 rounded">${escapeHtml(idea.category)}</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">${escapeHtml(idea.priority)}</span>
+                        <span class="bg-green-900 px-2 py-1 rounded">${escapeHtml(idea.status)}</span>
+                    </div>
+
+                    <p class="text-gray-300 mb-3 whitespace-pre-wrap">${escapeHtml(truncate(idea.idea_content, 300))}</p>
+                    
+                    ${idea.tags ? `<div class="text-sm text-gray-500">🏷️ ${escapeHtml(idea.tags)}</div>` : ''}
+                    
+                    <div class="text-xs text-gray-500 mt-2">
+                        📅 ${formatDate(idea.date_created)}
+                        ${idea.source_file ? ` | 📄 ${escapeHtml(idea.source_file)}` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Search ideas
+        function searchIdeas() {
+            const params = {
+                search: document.getElementById('search-box').value,
+                type: document.getElementById('filter-type').value,
+                category: document.getElementById('filter-category').value,
+                status: document.getElementById('filter-status').value
+            };
+            loadIdeas(params);
+        }
+
+        // Clear filters
+        function clearFilters() {
+            document.getElementById('search-box').value = '';
+            document.getElementById('filter-type').value = '';
+            document.getElementById('filter-category').value = '';
+            document.getElementById('filter-status').value = '';
+            loadIdeas();
+        }
+
+        // Show add form
+        function showAddForm() {
+            document.getElementById('idea-form').classList.remove('hidden');
+            document.getElementById('form-title').textContent = 'Add New Idea';
+            document.getElementById('new-idea-form').reset();
+            currentEditId = null;
+        }
+
+        // Hide add form
+        function hideAddForm() {
+            document.getElementById('idea-form').classList.add('hidden');
+            currentEditId = null;
+        }
+
+        // Submit form
+        document.getElementById('new-idea-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const data = {
+                title: document.getElementById('idea-title').value,
+                content: document.getElementById('idea-content').value,
+                type: document.getElementById('idea-type').value,
+                category: document.getElementById('idea-category').value,
+                priority: document.getElementById('idea-priority').value,
+                tags: document.getElementById('idea-tags').value,
+                source_file: document.getElementById('idea-source').value
+            };
+
+            const url = currentEditId ? `/api/hagolem/ideas/${currentEditId}` : '/api/hagolem/ideas';
+            const method = currentEditId ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(r => r.json())
+            .then(() => {
+                hideAddForm();
+                loadStats();
+                loadIdeas();
+            });
+        });
+
+        // Edit idea
+        function editIdea(id) {
+            // Load idea data and populate form
+            fetch(`/api/hagolem/ideas?id=${id}`)
+                .then(r => r.json())
+                .then(ideas => {
+                    const idea = ideas[0];
+                    document.getElementById('idea-title').value = idea.idea_title;
+                    document.getElementById('idea-content').value = idea.idea_content;
+                    document.getElementById('idea-type').value = idea.idea_type;
+                    document.getElementById('idea-category').value = idea.category;
+                    document.getElementById('idea-priority').value = idea.priority;
+                    document.getElementById('idea-tags').value = idea.tags || '';
+                    document.getElementById('idea-source').value = idea.source_file || '';
+                    
+                    currentEditId = id;
+                    document.getElementById('form-title').textContent = 'Edit Idea';
+                    document.getElementById('idea-form').classList.remove('hidden');
+                });
+        }
+
+        // Delete idea
+        function deleteIdea(id) {
+            if (confirm('Delete this idea?')) {
+                fetch(`/api/hagolem/ideas/${id}`, { method: 'DELETE' })
+                    .then(() => {
+                        loadStats();
+                        loadIdeas();
+                    });
+            }
+        }
+
+        // Helper functions
+        function getPriorityColor(priority) {
+            const colors = {
+                'Critical': 'border-red-500',
+                'High': 'border-orange-500',
+                'Medium': 'border-yellow-500',
+                'Low': 'border-green-500'
+            };
+            return colors[priority] || 'border-gray-500';
+        }
+
+        function truncate(str, len) {
+            if (!str) return '';
+            return str.length > len ? str.substring(0, len) + '...' : str;
+        }
+
+        function formatDate(dateStr) {
+            return new Date(dateStr).toLocaleDateString();
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
